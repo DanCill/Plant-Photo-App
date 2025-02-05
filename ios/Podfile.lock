@@ -1,0 +1,29 @@
+PODS:
+  - camera_avfoundation (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
+  - Flutter (from `Flutter`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+
+EXTERNAL SOURCES:
+  camera_avfoundation:
+    :path: ".symlinks/plugins/camera_avfoundation/ios"
+  Flutter:
+    :path: Flutter
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+
+SPEC CHECKSUMS:
+  camera_avfoundation: 8b8d780bcfb6a4a02b0fbe2b4bd17b5b71946e68
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
+
+PODFILE CHECKSUM: 8ae7473468f9dcefff1ce3ce179977c44e3e9e95
+
+COCOAPODS: 1.15.2
