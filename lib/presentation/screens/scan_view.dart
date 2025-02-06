@@ -1,17 +1,14 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_photo_app/providers/plant_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/models/models.dart';
 
 class ScanView extends StatefulWidget {
   final CameraDescription camera;
-  final Function(Plant) onAddPlant;
 
-  const ScanView({
-    super.key,
-    required this.camera,
-    required this.onAddPlant,
-  });
+  const ScanView({super.key, required this.camera});
 
   @override
   State<ScanView> createState() => _ScanViewState();
@@ -130,7 +127,7 @@ class _ScanViewState extends State<ScanView> {
               notes: _notesController.text,
             );
 
-            widget.onAddPlant(plant);
+            context.read<PlantProvider>().addPlant(plant);
             Navigator.pop(context);
           } catch (e) {
             print(e);

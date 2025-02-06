@@ -1,17 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:plant_photo_app/providers/plant_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/models/models.dart';
 
 class PlantDetailView extends StatefulWidget {
   final Plant plant;
-  final Function(Plant) onUpdatePlant;
 
   const PlantDetailView({
     super.key,
     required this.plant,
-    required this.onUpdatePlant,
   });
 
   @override
@@ -61,7 +61,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
         notes: _notesController.text,
       );
 
-      widget.onUpdatePlant(updatedPlant);
+      context.read<PlantProvider>().updatePlant(updatedPlant);
       setState(() {
         _currentPlant = updatedPlant;
         _isEditing = false;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plant_photo_app/providers/plant_provider.dart';
 import 'package:plant_photo_app/theme/theme.dart';
+import 'package:provider/provider.dart';
 
-import 'data/models/models.dart';
 import 'presentation/screens/plant_list_view.dart';
 import 'presentation/screens/profile_view.dart';
 import 'presentation/screens/settings_view.dart';
@@ -15,12 +16,14 @@ class PlantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Plant Photo App',
-      theme: lightMode,
-      darkTheme: darkMode,
-      home: const MainScreen(),
-    );
+    return ChangeNotifierProvider(
+        create: (_) => PlantProvider(),
+        child: MaterialApp(
+          title: 'Plant Photo App',
+          theme: lightMode,
+          darkTheme: darkMode,
+          home: const MainScreen(),
+        ));
   }
 }
 
@@ -33,13 +36,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-  final List<Plant> _plants = [];
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      PlantListView(
-          plants: _plants, onAddPlant: _addPlant, onUpdatePlant: _updatePlant),
+      const PlantListView(),
       const SettingsView(),
       const ProfileView(),
     ];
@@ -70,20 +71,5 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
     );
-  }
-
-  void _addPlant(Plant plant) {
-    setState(() {
-      _plants.add(plant);
-    });
-  }
-
-  void _updatePlant(Plant updatedPlant) {
-    setState(() {
-      final index = _plants.indexWhere((p) => p.id == updatedPlant.id);
-      if (index != -1) {
-        _plants[index] = updatedPlant;
-      }
-    });
   }
 }
